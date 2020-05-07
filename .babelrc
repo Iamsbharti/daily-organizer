@@ -1,0 +1,13 @@
+{
+  "presets": [
+    [
+      "@babel/reset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "@babel/preset-react"
+  ]
+}
