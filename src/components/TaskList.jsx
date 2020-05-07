@@ -1,13 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-
-function TaskList({ tasks, groupName }) {
+import { requestTaskCreate } from "../app/store/mutations";
+function TaskList({ tasks, groupName, id, createNewTask }) {
   return (
     <div>
-      <h3>{groupName}</h3>
+      <h4>{groupName}</h4>
       {tasks.map((task) => (
         <div key={task.id}>{task.name}</div>
       ))}
+      <button className="btn btn-info" onClick={() => createNewTask(id)}>
+        Add Task
+      </button>
     </div>
   );
 }
@@ -19,4 +22,12 @@ function mapStateToProps(state, ownProps) {
     tasks: state.tasks.filter((task) => task.group === groupId),
   };
 }
-export default connect(mapStateToProps)(TaskList);
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    createNewTask(id) {
+      console.log(`new task ${id}`);
+      dispatch(requestTaskCreate(id));
+    },
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);

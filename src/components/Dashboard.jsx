@@ -4,7 +4,6 @@ import TaskList from "./TaskList";
 function Dashboard({ groups }) {
   return (
     <div>
-      <h3>DashBoard</h3>
       {groups.map((group) => (
         <TaskList key={group.id} name={group.name} id={group.id} />
       ))}
