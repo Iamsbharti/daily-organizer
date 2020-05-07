@@ -1,4 +1,5 @@
-console.log("Hello computer");
-import { store } from "./store";
+import React from "react";
+import Main from "../components/Main";
+import ReactDOM from "react-dom";
 
-console.log(store.getState());
+ReactDOM.render(<Main />, document.getElementById("app"));
