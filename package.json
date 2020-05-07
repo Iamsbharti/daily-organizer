@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Iamsbharti/daily-organizer#readme",
   "dependencies": {
+    "redux": "^4.0.0",
     "webpack": "^4.17.2"
   },
   "devDependencies": {
