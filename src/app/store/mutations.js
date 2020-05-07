@@ -9,6 +9,7 @@ export const requestTaskCreate = (groupId) => {
 };
 
 export const createTask = (taskId, groupId, ownerId) => {
+  console.log(`dispatching create task-${taskId}-${groupId}-${ownerId}`);
   return {
     type: CREATE_TASK,
     taskId,

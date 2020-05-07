@@ -6,7 +6,9 @@ function TaskList({ tasks, groupName, id, createNewTask }) {
     <div>
       <h4>{groupName}</h4>
       {tasks.map((task) => (
-        <div key={task.id}>{task.name}</div>
+        <div key={task.id}>
+          {task.name} - {task.id}
+        </div>
       ))}
       <button className="btn btn-info" onClick={() => createNewTask(id)}>
         Add Task
