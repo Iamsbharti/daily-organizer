@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 function TaskList({ tasks, groupName }) {
   return (
     <div>
-      <h1>{groupName}</h1>
+      <h3>{groupName}</h3>
       {tasks.map((task) => (
         <div key={task.id}>{task.name}</div>
       ))}
