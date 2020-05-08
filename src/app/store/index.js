@@ -11,7 +11,7 @@ export const store = createStore(
     tasks(tasks = defaultState.tasks, action) {
       switch (action.type) {
         case mutations.CREATE_TASK:
-          console.log("in store--create-task");
+          console.log("in store--create-task--store/reducers");
           return [
             ...tasks,
             {
@@ -40,5 +40,7 @@ export const store = createStore(
 
 //run sagas
 for (let saga in sagas) {
+  console.log(`runing saga`);
   sagaMiddleWare.run(sagas[saga]);
+  console.log(`finish running saga`);
 }
