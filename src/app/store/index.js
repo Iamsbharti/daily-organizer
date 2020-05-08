@@ -22,6 +22,12 @@ export const store = createStore(
               isComplete: false,
             },
           ];
+        case mutations.SET_TASK_COMPLETION:
+          return tasks.map((task) => {
+            return task.id === action.taskId
+              ? { ...task, isComplete: action.isComplete }
+              : task;
+          });
       }
       return tasks;
     },
