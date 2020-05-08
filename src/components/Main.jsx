@@ -5,6 +5,7 @@ import { store } from "../app/store";
 import { history } from "../app/store/history";
 import { Router, Route } from "react-router-dom";
 import Navigation from "./Navigation";
+import TaskDetails from "./TaskDetails";
 function Main() {
   return (
     <div>
@@ -13,6 +14,11 @@ function Main() {
           <div>
             <Navigation />
             <Route exact path="/dashboard" render={() => <Dashboard />} />
+            <Route
+              exact
+              path="/task/:id"
+              render={({ match }) => <TaskDetails match={match} />}
+            />
           </div>
         </Provider>
       </Router>
