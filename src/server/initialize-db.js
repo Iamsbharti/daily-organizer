@@ -9,4 +9,4 @@ async function initializedb() {
   }
 }
 
-initializedb();
+//initializedb();
