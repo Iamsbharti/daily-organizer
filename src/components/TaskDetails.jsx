@@ -2,11 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as mutations from "../app/store/mutations";
-function TaskDetails({ id, groups, task, isComplete, setTaskCompletion }) {
+function TaskDetails({
+  id,
+  groups,
+  task,
+  isComplete,
+  setTaskCompletion,
+  setTaskName,
+  setTaskGroup,
+}) {
   return (
     <div>
       <div>
-        <input value={task.name} />
+        <input value={task.name} onChange={setTaskName} />
       </div>
       <div>
         <button
@@ -18,9 +26,12 @@ function TaskDetails({ id, groups, task, isComplete, setTaskCompletion }) {
       </div>
       <div>
         <label htmlFor="Task Groups"></label>
-        <select>
+        <select onChange={setTaskGroup}>
+          <option>Select Group</option>
           {groups.map((group) => (
-            <option key={group.id}>{group.name}</option>
+            <option key={group.id} value={group.id}>
+              {group.name}
+            </option>
           ))}
         </select>
       </div>
@@ -44,9 +55,16 @@ function mapStateToProps(state, ownProps) {
   };
 }
 function mapDispatchToProps(dispatch, ownProps) {
+  const id = ownProps.match.params.id;
   return {
     setTaskCompletion(id, isComplete) {
       dispatch(mutations.setTaskCompletion(id, isComplete));
+    },
+    setTaskName(e) {
+      dispatch(mutations.setTaskName(id, e.target.value));
+    },
+    setTaskGroup(e) {
+      dispatch(mutations.setGroupName(id, e.target.value));
     },
   };
 }
