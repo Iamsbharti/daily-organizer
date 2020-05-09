@@ -12,6 +12,8 @@ export const store = createStore(
     session(usersession = defaultState.session || {}, action) {
       const { type, authenticated, session } = action;
       switch (type) {
+        case mutations.SET_STATE:
+          return { ...usersession, id: action.state.session.id };
         case mutations.REQUEST_AUTHETICATE_USER:
           return {
             ...usersession,
@@ -26,8 +28,10 @@ export const store = createStore(
           return usersession;
       }
     },
-    tasks(tasks = defaultState.tasks, action) {
+    tasks(tasks = [], action) {
       switch (action.type) {
+        case mutations.SET_STATE:
+          return action.state.tasks;
         case mutations.CREATE_TASK:
           console.log("in store--create-task--store/reducers");
           return [
@@ -61,13 +65,18 @@ export const store = createStore(
       }
       return tasks;
     },
-    groups(groups = defaultState.groups, action) {
+    groups(groups = [], action) {
+      switch (action.type) {
+        case mutations.SET_STATE:
+          return action.state.groups;
+      }
+
       return groups;
     },
-    comments(comments = defaultState.comments, action) {
+    comments(comments = [], action) {
       return comments;
     },
-    users(users = defaultState.users, action) {
+    users(users = [], action) {
       return users;
     },
   }),

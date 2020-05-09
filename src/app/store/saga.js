@@ -2,7 +2,7 @@ import { put, take, select } from "redux-saga/effects";
 import axios from "axios";
 import * as mutations from "./mutations";
 import { v4 as uuidv4 } from "uuid";
-import { TASK } from "redux-saga/utils";
+import { history } from "./history";
 
 const url = "http://localhost:8888";
 //create a new task
@@ -60,6 +60,9 @@ export function* userAuthentication() {
         password,
       });
       console.log("data", data);
+      yield put(mutations.setState(data.state));
+      yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED));
+      history.push("/dashboard");
       if (!data) {
         throw new Error();
       }

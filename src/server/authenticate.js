@@ -7,8 +7,8 @@ const authenticationToken = [];
 async function assembleUserState(user) {
   let db = await connectDb();
 
-  let tasks = db.collection("tasks").find({ owner: user.id }).toArray();
-  let groups = db.collection("groups").find({ owner: user.id }).toArray();
+  let tasks = await db.collection("tasks").find({ owner: user.id }).toArray();
+  let groups = await db.collection("groups").find({ owner: user.id }).toArray();
 
   return {
     tasks,
