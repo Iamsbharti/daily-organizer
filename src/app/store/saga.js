@@ -4,7 +4,7 @@ import * as mutations from "./mutations";
 import { v4 as uuidv4 } from "uuid";
 import { history } from "./history";
 
-const url = "http://localhost:8888";
+const url = process.env.NODE_ENV == "production" ? "" : "http://localhost:8888";
 //create a new task
 export function* requestTaskCreate() {
   while (true) {

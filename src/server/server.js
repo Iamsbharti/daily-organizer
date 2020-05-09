@@ -4,8 +4,9 @@ import bodyParser from "body-parser";
 import { connectDb } from "./connect-db";
 import "./initialize-db";
 import { autheticationRoute } from "./authenticate";
+import path from "path";
 //initailize a port
-let port = "8888";
+let port = process.env.PORT || "8888";
 
 //init the app
 let app = express();
@@ -18,6 +19,14 @@ app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
 
 //call authenticateroute
 autheticationRoute(app);
+
+//production config
+if (process.env.NODE_ENV == "production") {
+  app.use(express.static(path.resolve(__dirname, "../../dist")));
+  app.get("/*", (req, res) => {
+    res.sendFile(path.resolve("index.html"));
+  });
+}
 
 //add new task method
 export const addNewtask = async (task) => {

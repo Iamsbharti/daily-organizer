@@ -4,11 +4,12 @@
   "description": "A full stack js application which manages to-do lists",
   "main": "index.js",
   "scripts": {
+    "build": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack",
+    "start": "npm run build && npm run server",
     "dev": "webpack-dev-server",
     "init": "babel-node src/server/initialize-db",
-    "server": "babel-node src/server/server",
+    "server": "cross-env NODE_ENV=production babel-node src/server/server",
     "server-test": "babel-node src/server/server.spec",
     "start-dev": "concurrently \"npm run server\" \"npm run dev\""
   },
