@@ -46,3 +46,23 @@ export function* modifyTask() {
     console.log("Response from update:", res);
   }
 }
+//authenticate user
+export function* userAuthentication() {
+  while (true) {
+    const { username, password } = yield take(
+      mutations.REQUEST_AUTHETICATE_USER
+    );
+    try {
+      const { data } = yield axios.post(url + "/authenticate", {
+        username,
+        password,
+      });
+      if (!data) {
+        throw new Error();
+      }
+    } catch (e) {
+      console.warn("Can't Authenticate");
+      yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED));
+    }
+  }
+}
