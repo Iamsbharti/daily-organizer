@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import { connectDb } from "./connect-db";
-
+import "./initialize-db";
 //initailize a port
 let port = "8888";
 
