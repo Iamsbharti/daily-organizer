@@ -76,7 +76,7 @@ export const store = createStore(
 
 //run sagas
 for (let saga in sagas) {
-  console.log(`runing saga`);
+  //console.log(`runing saga`);
   sagaMiddleWare.run(sagas[saga]);
-  console.log(`finish running saga`);
+  // console.log(`finish running saga`);
 }

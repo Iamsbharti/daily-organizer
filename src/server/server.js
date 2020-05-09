@@ -3,6 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { connectDb } from "./connect-db";
 import "./initialize-db";
+import { autheticationRoute } from "./authenticate";
 //initailize a port
 let port = "8888";
 
@@ -14,6 +15,9 @@ app.listen(port, console.log(`App listining at- ${port}`));
 
 //use cors and body-parser for post requests
 app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
+
+//call authenticateroute
+autheticationRoute(app);
 
 //add new task method
 export const addNewtask = async (task) => {

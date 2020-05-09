@@ -52,16 +52,20 @@ export function* userAuthentication() {
     const { username, password } = yield take(
       mutations.REQUEST_AUTHETICATE_USER
     );
+    console.log(`user-${username}-pwd=${password}`);
     try {
+      console.log("in try");
       const { data } = yield axios.post(url + "/authenticate", {
         username,
         password,
       });
+      console.log("data", data);
       if (!data) {
         throw new Error();
       }
+      console.log("Authenticated", data);
     } catch (e) {
-      console.warn("Can't Authenticate");
+      console.log("Can't Authenticate", e);
       yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED));
     }
   }

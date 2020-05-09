@@ -10,7 +10,7 @@ function Login({ authenticateUser, authenticated }) {
           type="text"
           placeholder="username"
           name="username"
-          defaultValue="dev"
+          defaultValue="Dev"
         />
         <input
           type="password"
