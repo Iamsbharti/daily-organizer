@@ -11,7 +11,7 @@
     "server": "cross-env NODE_ENV=production babel-node src/server",
     "server-test": "babel-node src/server/server.spec",
     "start-dev": "concurrently \"npm run server\" \"npm run dev\"",
-    "start": "npm run build && npm run server"
+    "start": "npm run server"
   },
   "repository": {
     "type": "git",
