@@ -8,7 +8,7 @@ function TaskList({ tasks, groupName, id, createNewTask }) {
       <h4>{groupName}</h4>
       {tasks.map((task) => (
         <Link to={`/task/${task.id}`} key={task.id}>
-          <div>{task.name}</div>
+          <div className="card p-3 mt-2">{task.name}</div>
         </Link>
       ))}
       <button
