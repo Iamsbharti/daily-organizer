@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/Iamsbharti/daily-organizer#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "cross-env": "^5.2.0",
     "history": "^4.7.2",
     "md5": "^2.2.1",
