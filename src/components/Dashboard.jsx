@@ -3,9 +3,14 @@ import { connect } from "react-redux";
 import TaskList from "./TaskList";
 function Dashboard({ groups }) {
   return (
-    <div>
+    <div className="row">
       {groups.map((group) => (
-        <TaskList key={group.id} name={group.name} id={group.id} />
+        <TaskList
+          key={group.id}
+          name={group.name}
+          id={group.id}
+          className="col"
+        />
       ))}
     </div>
   );

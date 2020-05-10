@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as mutations from "../app/store/mutations";
 function Login({ authenticateUser, authenticated }) {
   return (
-    <div>
+    <div className="card p-3 col-6">
       <h2>Login Here!!</h2>
       <form onSubmit={authenticateUser}>
         <input
@@ -11,19 +11,21 @@ function Login({ authenticateUser, authenticated }) {
           placeholder="username"
           name="username"
           defaultValue="Dev"
+          className="form-control"
         />
         <input
           type="password"
           placeholder="password"
           name="password"
           defaultValue=""
+          className="form-control"
         />
         {authenticated === mutations.NOT_AUTHENTICATED ? (
           <p>Login Failed!!</p>
         ) : (
           ""
         )}
-        <button>Login</button>
+        <button className="form-control btn btn-primary mt-2">Login</button>
       </form>
     </div>
   );

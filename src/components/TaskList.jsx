@@ -4,14 +4,17 @@ import { requestTaskCreate } from "../app/store/mutations";
 import { Link } from "react-router-dom";
 function TaskList({ tasks, groupName, id, createNewTask }) {
   return (
-    <div>
+    <div className="card p-2 m-2">
       <h4>{groupName}</h4>
       {tasks.map((task) => (
         <Link to={`/task/${task.id}`} key={task.id}>
           <div>{task.name}</div>
         </Link>
       ))}
-      <button className="btn btn-info" onClick={() => createNewTask(id)}>
+      <button
+        className="btn btn-primary btn-block mt-2"
+        onClick={() => createNewTask(id)}
+      >
         Add Task
       </button>
     </div>
