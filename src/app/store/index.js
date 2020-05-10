@@ -6,10 +6,14 @@ import createSagaMiddleware from "redux-saga";
 import * as sagas from "./saga";
 import * as mutations from "./mutations";
 const sagaMiddleWare = createSagaMiddleware();
-
+const session_state = {
+  session: {
+    authenticated: false,
+  },
+};
 export const store = createStore(
   combineReducers({
-    session(usersession = defaultState.session || {}, action) {
+    session(usersession = session_state.session || {}, action) {
       const { type, authenticated, session } = action;
       switch (type) {
         case mutations.SET_STATE:
