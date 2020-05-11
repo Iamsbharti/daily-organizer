@@ -11,7 +11,7 @@ function Navigation({ username }) {
       >
         <a className="navbar-brand" href="/">
           <img
-            src="src/images/org.png"
+            src="public/images/org.png"
             width="50"
             height="50"
             className="d-inline-block align-top"
