@@ -10,6 +10,7 @@ export const NOT_AUTHENTICATED = "NOT_AUTHENTICATED";
 export const AUTHENTICATING = "AUTHENTICATING";
 export const SET_STATE = "SET_STATE";
 export const SET_COMMENTS = "SET_COMMENTS";
+export const ADD_COMMENTS = "ADD_COMMENTS";
 export const requestTaskCreate = (groupId) => {
   return {
     type: REQUEST_TASK_CREATION,
@@ -78,5 +79,13 @@ export const setComments = (taskId, comments, ownerId, id) => {
     commentsValue: comments,
     ownerId,
     id,
+  };
+};
+export const addComments = (taskId, userId) => {
+  console.log(`add comments action-${taskId}-${userId}`);
+  return {
+    type: ADD_COMMENTS,
+    taskId,
+    userId,
   };
 };

@@ -13,6 +13,7 @@ function TaskDetails({
   setTaskName,
   setTaskGroup,
   setComments,
+  addComments,
 }) {
   return (
     <div className="card col-6">
@@ -25,18 +26,24 @@ function TaskDetails({
       </div>
       <div>
         <button
-          className="btn btn-primary mt-2"
+          className="btn btn-primary mt-3 ml-1"
           onClick={() => setTaskCompletion(id, !isComplete)}
         >
           {isComplete ? "Reopen" : "Complete"}
         </button>
       </div>
       <div className="mt-3">
-        <textarea
-          className="form-control"
-          value={content}
-          onChange={(e) => setComments(e.target.value, comment_id)}
-        />
+        {content ? (
+          <textarea
+            className="form-control"
+            value={content}
+            onChange={(e) => setComments(e.target.value, comment_id)}
+          />
+        ) : (
+          <button className="btn btn-link" onClick={addComments}>
+            Add Comments
+          </button>
+        )}
       </div>
       <div className="mt-3">
         <label htmlFor="Task Groups"></label>
@@ -99,6 +106,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
     setComments(value, comment_id) {
       dispatch(mutations.setComments(id, value, userId, comment_id));
+    },
+    addComments(e) {
+      dispatch(mutations.addComments(id, userId));
     },
   };
 }
