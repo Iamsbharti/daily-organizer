@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 function Navigation({ username }) {
@@ -23,7 +23,14 @@ function Navigation({ username }) {
           className="d-flex justify-content-end"
           style={{ listStyleType: "none" }}
         >
-          {username && <li className="nav-item">{`${username} logged in`}</li>}
+          {username && (
+            <>
+              <li className="nav-item mt-2">{`${username} logged in`}</li>
+              <li className="nav-item ml-2">
+                <button className="btn btn-link">Logout</button>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </div>
