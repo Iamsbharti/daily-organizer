@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-function Navigation() {
+function Navigation({ userId }) {
   return (
     <div>
       <nav
@@ -23,11 +23,15 @@ function Navigation() {
           className="d-flex justify-content-end"
           style={{ listStyleType: "none" }}
         >
-          <li className="nav-item">User</li>
+          {userId && <li className="nav-item">{`${userId} logged in`}</li>}
         </ul>
       </nav>
     </div>
   );
 }
-
-export default connect((state) => state)(Navigation);
+function mapStateToProps(state, ownProps) {
+  return {
+    userId: state.session.id,
+  };
+}
+export default connect(mapStateToProps)(Navigation);
