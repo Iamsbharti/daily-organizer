@@ -4,7 +4,9 @@ import bodyParser from "body-parser";
 import { connectDb } from "./connect-db";
 import "./initialize-db";
 import { autheticationRoute } from "./authenticate";
+import { modifyCommentsRoute } from "./modifyComments";
 import path from "path";
+
 //initailize a port
 let port = process.env.PORT || "8888";
 
@@ -19,6 +21,9 @@ app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
 
 //call authenticateroute
 autheticationRoute(app);
+
+//call modifyCommentsRoute
+modifyCommentsRoute(app);
 
 //production config
 if (process.env.NODE_ENV == "production") {

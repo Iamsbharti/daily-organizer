@@ -73,3 +73,17 @@ export function* userAuthentication() {
     }
   }
 }
+//add-modify comments
+export function* modifyComments() {
+  while (true) {
+    const commentValues = yield take(mutations.SET_COMMENTS);
+    console.log(`in modify_comments_saga-${commentValues}`);
+    const { data } = yield axios.post(url + "/modifyComments", {
+      task: commentValues.taskId,
+      comment: commentValues.comments,
+      owner: commentValues.ownerId,
+      id: uuidv4(),
+    });
+    console.log("Response from server-modify-comments", data);
+  }
+}

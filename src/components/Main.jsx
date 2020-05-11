@@ -12,7 +12,7 @@ const RouterGaurd = (Component) => ({ match }) => {
   if (!store.getState().session.authenticated) {
     return <Redirect to="/" />;
   } else {
-    return <Component match={match} />;
+    return <Component match={match} userId={store.getState().session.id} />;
   }
 };
 function Main() {

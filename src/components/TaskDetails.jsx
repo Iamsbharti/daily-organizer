@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as mutations from "../app/store/mutations";
@@ -7,10 +7,11 @@ function TaskDetails({
   groups,
   task,
   isComplete,
-  comments,
+  content,
   setTaskCompletion,
   setTaskName,
   setTaskGroup,
+  setComments,
 }) {
   return (
     <div className="card col-6">
@@ -30,9 +31,11 @@ function TaskDetails({
         </button>
       </div>
       <div className="mt-3">
-        <textarea className="form-control" value={comments}>
-          {comments}
-        </textarea>
+        <textarea
+          className="form-control"
+          value={content}
+          onChange={setComments}
+        />
       </div>
       <div className="mt-3">
         <label htmlFor="Task Groups"></label>
@@ -55,19 +58,32 @@ function TaskDetails({
 }
 function mapStateToProps(state, ownProps) {
   const taskId = ownProps.match.params.id;
+  const userId = ownProps.userId;
   const task = state.tasks.find((task) => task.id === taskId);
   const groups = state.groups;
-  const comments = state.comments.content;
+  const comments = state.comments.find(
+    (comment) => comment.owner === userId && comment.task === taskId
+  );
+  //condition check for undefined comments
+  if (comments !== undefined) {
+    console.log("def");
+    var content = comments.content;
+  } else {
+    console.log("undef");
+    content = "";
+  }
+  console.log("final_val", content);
   return {
     id: taskId,
     task,
     groups,
     isComplete: task.isComplete,
-    comments,
+    content,
   };
 }
 function mapDispatchToProps(dispatch, ownProps) {
   const id = ownProps.match.params.id;
+  const userId = ownProps.userId;
   return {
     setTaskCompletion(id, isComplete) {
       dispatch(mutations.setTaskCompletion(id, isComplete));
@@ -77,6 +93,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
     setTaskGroup(e) {
       dispatch(mutations.setGroupName(id, e.target.value));
+    },
+    setComments(e) {
+      dispatch(mutations.setComments(id, e.target.value, userId));
     },
   };
 }
