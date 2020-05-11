@@ -82,6 +82,10 @@ export const store = createStore(
       return groups;
     },
     comments(comments = [], action) {
+      switch (action.type) {
+        case mutations.SET_STATE:
+          return action.state.comments;
+      }
       return comments;
     },
     users(users = [], action) {

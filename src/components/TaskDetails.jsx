@@ -7,6 +7,7 @@ function TaskDetails({
   groups,
   task,
   isComplete,
+  comments,
   setTaskCompletion,
   setTaskName,
   setTaskGroup,
@@ -27,6 +28,11 @@ function TaskDetails({
         >
           {isComplete ? "Reopen" : "Complete"}
         </button>
+      </div>
+      <div className="mt-3">
+        <textarea className="form-control" value={comments}>
+          {comments}
+        </textarea>
       </div>
       <div className="mt-3">
         <label htmlFor="Task Groups"></label>
@@ -51,11 +57,13 @@ function mapStateToProps(state, ownProps) {
   const taskId = ownProps.match.params.id;
   const task = state.tasks.find((task) => task.id === taskId);
   const groups = state.groups;
+  const comments = state.comments.content;
   return {
     id: taskId,
     task,
     groups,
     isComplete: task.isComplete,
+    comments,
   };
 }
 function mapDispatchToProps(dispatch, ownProps) {
