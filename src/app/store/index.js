@@ -17,7 +17,11 @@ export const store = createStore(
       const { type, authenticated, session } = action;
       switch (type) {
         case mutations.SET_STATE:
-          return { ...usersession, id: action.state.session.id };
+          return {
+            ...usersession,
+            id: action.state.session.id,
+            username: action.state.session.username,
+          };
         case mutations.REQUEST_AUTHETICATE_USER:
           return {
             ...usersession,

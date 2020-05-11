@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
 
-function Navigation({ userId }) {
+function Navigation({ username }) {
   return (
     <div>
       <nav
@@ -14,7 +14,7 @@ function Navigation({ userId }) {
             src="src/images/org.png"
             width="50"
             height="50"
-            class="d-inline-block align-top"
+            className="d-inline-block align-top"
             alt=""
           />
           Organizer
@@ -23,7 +23,7 @@ function Navigation({ userId }) {
           className="d-flex justify-content-end"
           style={{ listStyleType: "none" }}
         >
-          {userId && <li className="nav-item">{`${userId} logged in`}</li>}
+          {username && <li className="nav-item">{`${username} logged in`}</li>}
         </ul>
       </nav>
     </div>
@@ -31,7 +31,7 @@ function Navigation({ userId }) {
 }
 function mapStateToProps(state, ownProps) {
   return {
-    userId: state.session.id,
+    username: state.session.username,
   };
 }
 export default connect(mapStateToProps)(Navigation);
