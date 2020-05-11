@@ -70,12 +70,13 @@ export const setState = (state = {}) => {
     state,
   };
 };
-export const setComments = (taskId, comments, ownerId) => {
+export const setComments = (taskId, comments, ownerId, id) => {
   console.log(`setcomments actions-${taskId}-${comments}-${ownerId}`);
   return {
     type: SET_COMMENTS,
     taskId,
     commentsValue: comments,
     ownerId,
+    id,
   };
 };

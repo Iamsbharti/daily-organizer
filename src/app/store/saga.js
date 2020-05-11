@@ -77,12 +77,12 @@ export function* userAuthentication() {
 export function* modifyComments() {
   while (true) {
     const commentValues = yield take(mutations.SET_COMMENTS);
-    console.log(`in modify_comments_saga-${commentValues}`);
+    console.log(`in modify_comments_saga-${commentValues.commentsValue}`);
     const { data } = yield axios.post(url + "/modifyComments", {
       task: commentValues.taskId,
-      comment: commentValues.comments,
+      content: commentValues.commentsValue,
       owner: commentValues.ownerId,
-      id: uuidv4(),
+      id: commentValues.id,
     });
     console.log("Response from server-modify-comments", data);
   }

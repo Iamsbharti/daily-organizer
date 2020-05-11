@@ -8,6 +8,7 @@ function TaskDetails({
   task,
   isComplete,
   content,
+  comment_id,
   setTaskCompletion,
   setTaskName,
   setTaskGroup,
@@ -34,7 +35,7 @@ function TaskDetails({
         <textarea
           className="form-control"
           value={content}
-          onChange={setComments}
+          onChange={(e) => setComments(e.target.value, comment_id)}
         />
       </div>
       <div className="mt-3">
@@ -68,6 +69,7 @@ function mapStateToProps(state, ownProps) {
   if (comments !== undefined) {
     console.log("def");
     var content = comments.content;
+    var comment_id = comments.id;
   } else {
     console.log("undef");
     content = "";
@@ -79,6 +81,7 @@ function mapStateToProps(state, ownProps) {
     groups,
     isComplete: task.isComplete,
     content,
+    comment_id,
   };
 }
 function mapDispatchToProps(dispatch, ownProps) {
@@ -94,8 +97,8 @@ function mapDispatchToProps(dispatch, ownProps) {
     setTaskGroup(e) {
       dispatch(mutations.setGroupName(id, e.target.value));
     },
-    setComments(e) {
-      dispatch(mutations.setComments(id, e.target.value, userId));
+    setComments(value, comment_id) {
+      dispatch(mutations.setComments(id, value, userId, comment_id));
     },
   };
 }

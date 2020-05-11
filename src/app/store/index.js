@@ -88,7 +88,7 @@ export const store = createStore(
         case mutations.SET_COMMENTS:
           console.log(`reducer-${Object.keys(comments)}`);
           return comments.map((comment) => {
-            return comment.task === action.taskId
+            return comment.id === action.id
               ? { ...comment, content: action.commentsValue }
               : comment;
           });
