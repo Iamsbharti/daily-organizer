@@ -19,6 +19,10 @@ module.exports = {
         test: /\.jsx?/,
         loader: "babel-loader",
       },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: "url-loader?name=public/images/[name].[ext]",
+      },
     ],
   },
 };

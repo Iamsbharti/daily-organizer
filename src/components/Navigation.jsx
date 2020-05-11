@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-
+import images from "../../public/images/org.png";
 function Navigation({ username }) {
   return (
     <div>
@@ -10,7 +10,7 @@ function Navigation({ username }) {
       >
         <a className="navbar-brand" href="/">
           <img
-            src="public/images/org.png"
+            src={images}
             width="50"
             height="50"
             className="d-inline-block align-top"
