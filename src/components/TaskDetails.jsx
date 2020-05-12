@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as mutations from "../app/store/mutations";
+
 function TaskDetails({
   id,
   groups,
   task,
   isComplete,
-  content,
+  //content,
   comment_id,
+  userId,
+  comments,
   setTaskCompletion,
   setTaskName,
   setTaskGroup,
@@ -33,16 +36,18 @@ function TaskDetails({
         </button>
       </div>
       <div className="mt-3">
-        {content ? (
+        {comments ? (
           <textarea
             className="form-control"
-            value={content}
+            value={comments.content}
             onChange={(e) => setComments(e.target.value, comment_id)}
           />
         ) : (
-          <button className="btn btn-link" onClick={addComments}>
-            Add Comments
-          </button>
+          <textarea
+            className="form-control"
+            //value={comments}
+            onChange={(e) => addComments(e.target.value, userId)}
+          />
         )}
       </div>
       <div className="mt-3">
@@ -76,23 +81,14 @@ function mapStateToProps(state, ownProps) {
   const comments = state.comments.find(
     (comment) => comment.owner === userId && comment.task === taskId
   );
-  //condition check for undefined comments
-  if (comments !== undefined) {
-    console.log("def");
-    var content = comments.content;
-    var comment_id = comments.id;
-  } else {
-    console.log("undef");
-    content = "";
-  }
-  console.log("final_val", content);
+
   return {
     id: taskId,
     task,
     groups,
+    userId,
     isComplete: task.isComplete,
-    content,
-    comment_id,
+    comments,
   };
 }
 function mapDispatchToProps(dispatch, ownProps) {
@@ -111,8 +107,8 @@ function mapDispatchToProps(dispatch, ownProps) {
     setComments(value, comment_id) {
       dispatch(mutations.setComments(id, value, userId, comment_id));
     },
-    addComments(e) {
-      dispatch(mutations.addComments(id, userId));
+    addComments(value, userId) {
+      dispatch(mutations.addComments(id, value, userId));
     },
   };
 }

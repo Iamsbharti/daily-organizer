@@ -81,11 +81,12 @@ export const setComments = (taskId, comments, ownerId, id) => {
     id,
   };
 };
-export const addComments = (taskId, userId) => {
-  console.log(`add comments action-${taskId}-${userId}`);
+export const addComments = (taskId, content, userId) => {
+  console.log(`add comments action-${taskId}-${content}-${userId}`);
   return {
     type: ADD_COMMENTS,
     taskId,
+    content,
     userId,
   };
 };

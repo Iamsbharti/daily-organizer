@@ -87,3 +87,16 @@ export function* modifyComments() {
     console.log("Response from server-modify-comments", data);
   }
 }
+export function* addComments() {
+  while (true) {
+    const commentsValue = yield take(mutations.ADD_COMMENTS);
+    console.log("saga--", commentsValue.content);
+    const { data } = yield axios.post(url + "/addComments", {
+      owner: commentsValue.id,
+      id: uuidv4(),
+      task: commentsValue.taskId,
+      content: commentsValue.content,
+    });
+    console.log("Response from server add-comments", data);
+  }
+}

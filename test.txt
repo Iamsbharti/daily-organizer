@@ -1,0 +1,13 @@
+<div className="mt-3">
+        {content ? (
+          <textarea
+            className="form-control"
+            value={content}
+            onChange={(e) => setComments(e.target.value, comment_id)}
+          />
+        ) : (
+          <button className="btn btn-link" onClick={addComments}>
+            Add Comments
+          </button>
+        )}
+      </div>
