@@ -47,7 +47,11 @@ function TaskDetails({
       </div>
       <div className="mt-3">
         <label htmlFor="Task Groups"></label>
-        <select onChange={setTaskGroup} className="form-control">
+        <select
+          onChange={setTaskGroup}
+          value={task.group}
+          className="form-control"
+        >
           <option>Select Group</option>
           {groups.map((group) => (
             <option key={group.id} value={group.id}>
