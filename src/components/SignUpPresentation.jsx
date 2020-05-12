@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 function SignUp({ handleSignUp }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [doesPasswordsMatch, setPasswordMatch] = useState(true);
   function signUp(e) {
     e.preventDefault();
-    handleSignUp(username, password);
+    handleSignUp(username, password, confirmPassword);
   }
+  useEffect(() => {
+    setPasswordMatch(password === confirmPassword);
+  }, [password, confirmPassword]);
+
   return (
     <div className="card col-6 mt-4">
       <h1>
@@ -39,6 +44,11 @@ function SignUp({ handleSignUp }) {
           className="form-control mt-2"
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
+        {doesPasswordsMatch ? (
+          <span className="badge badge-success mt-2">passwords match</span>
+        ) : (
+          <span className="badge badge-danger mt-2">passwords don't match</span>
+        )}
         <div className="row">
           <button className="form-control mt-2 btn btn-success col ml-3">
             SignUp

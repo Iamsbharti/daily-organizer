@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import SignUpPresentation from "./SignUpPresentation";
 import * as mutations from "../app/store/mutations";
-function SignUpContainer({ handleSignUp }) {
+function SignUpContainer({ handleInputValidation }) {
   return (
     <div>
-      <SignUpPresentation handleSignUp={handleSignUp} />
+      <SignUpPresentation handleSignUp={handleInputValidation} />
     </div>
   );
 }
@@ -14,8 +14,8 @@ function mapStateToProps(state, ownProps) {
 }
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    handleSignUp(username, password) {
-      dispatch(mutations.signUp(username, password));
+    handleInputValidation(username, password, confirmpassword) {
+      dispatch(mutations.verifyUserInput(username, password, confirmpassword));
     },
   };
 }

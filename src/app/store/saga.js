@@ -104,3 +104,18 @@ export function* addComments() {
     console.log("Response from server add-comments", data);
   }
 }
+export function* inputValidation() {
+  while (true) {
+    const { username, password, confirmpassword } = yield take(
+      mutations.INPUT_VALIDATION
+    );
+    try {
+      const { data } = yield axios.post("/validateUser", {
+        username,
+      });
+      if (!data) {
+        throw new Error();
+      }
+    } catch (e) {}
+  }
+}

@@ -13,6 +13,8 @@ export const SET_COMMENTS = "SET_COMMENTS";
 export const REQUEST_ADD_COMMENTS = "REQUEST_ADD_COMMENTS";
 export const ADD_COMMENTS = "ADD_COMMENTS";
 export const SIGN_UP = "SIGN_UP";
+export const INPUT_VALIDATION = "INPUT_VALIDATION";
+export const USER_NAME_FOUND = "USER_NAME_FOUND";
 export const requestTaskCreate = (groupId) => {
   return {
     type: REQUEST_TASK_CREATION,
@@ -101,10 +103,10 @@ export const addComments = (taskId, content, userId, comment_id) => {
     comment_id,
   };
 };
-export const signUp = (username, password) => {
+export const verifyUserInput = (username, password) => {
   console.log(`username-${username}-password-${password}`);
   return {
-    type: SIGN_UP,
+    type: INPUT_VALIDATION,
     username,
     password,
   };
