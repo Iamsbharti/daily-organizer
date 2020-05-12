@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: path.resolve(__dirname, "src", "app"),
@@ -13,6 +14,12 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
   },
+  plugins: [
+    new HtmlWebPlugin({
+      template: "index.html",
+      favicon: "public/images/favicon.ico",
+    }),
+  ],
   module: {
     rules: [
       {
@@ -20,7 +27,7 @@ module.exports = {
         loader: "babel-loader",
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif|svg|ico)$/i,
         loader: "url-loader?name=public/images/[name].[ext]",
       },
     ],
