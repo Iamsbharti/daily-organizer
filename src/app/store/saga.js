@@ -32,9 +32,9 @@ export function* modifyTask() {
       mutations.SET_TASK_COMPLETION,
       mutations.SET_TASK_NAME,
     ]);
-    console.log(
+    /**console.log(
       `update task ${task.taskId}-${task.name}-${task.group}-${task.isComplete}`
-    );
+    );*/
     const res = yield axios.post(url + "/task/update", {
       task: {
         id: task.taskId,
@@ -52,9 +52,9 @@ export function* userAuthentication() {
     const { username, password } = yield take(
       mutations.REQUEST_AUTHETICATE_USER
     );
-    console.log(`user-${username}-pwd=${password}`);
+    //console.log(`user-${username}-pwd=${password}`);
     try {
-      console.log("in try");
+      //console.log("in try");
       const { data } = yield axios.post(url + "/authenticate", {
         username,
         password,
@@ -77,7 +77,7 @@ export function* userAuthentication() {
 export function* modifyComments() {
   while (true) {
     const commentValues = yield take(mutations.SET_COMMENTS);
-    console.log(`in modify_comments_saga-${commentValues.commentsValue}`);
+    //console.log(`in modify_comments_saga-${commentValues.commentsValue}`);
     const { data } = yield axios.post(url + "/modifyComments", {
       task: commentValues.taskId,
       content: commentValues.commentsValue,
@@ -89,11 +89,15 @@ export function* modifyComments() {
 }
 export function* addComments() {
   while (true) {
-    const commentsValue = yield take(mutations.ADD_COMMENTS);
+    const commentsValue = yield take(mutations.REQUEST_ADD_COMMENTS);
+    const { taskId, content, userId } = commentsValue;
+    let comment_id = uuidv4();
     console.log("saga--", commentsValue.content);
+    //update store
+    yield put(mutations.addComments(taskId, content, userId, comment_id));
     const { data } = yield axios.post(url + "/addComments", {
-      owner: commentsValue.id,
-      id: uuidv4(),
+      owner: commentsValue.userId,
+      id: comment_id,
       task: commentsValue.taskId,
       content: commentsValue.content,
     });

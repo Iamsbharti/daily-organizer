@@ -8,8 +8,6 @@ function TaskDetails({
   groups,
   task,
   isComplete,
-  //content,
-  comment_id,
   userId,
   comments,
   setTaskCompletion,
@@ -40,12 +38,12 @@ function TaskDetails({
           <textarea
             className="form-control"
             value={comments.content}
-            onChange={(e) => setComments(e.target.value, comment_id)}
+            onChange={(e) => setComments(e.target.value, comments.id)}
           />
         ) : (
           <textarea
             className="form-control"
-            //value={comments}
+            value={comments}
             onChange={(e) => addComments(e.target.value, userId)}
           />
         )}
@@ -108,7 +106,7 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch(mutations.setComments(id, value, userId, comment_id));
     },
     addComments(value, userId) {
-      dispatch(mutations.addComments(id, value, userId));
+      dispatch(mutations.requestAddComments(id, value, userId));
     },
   };
 }

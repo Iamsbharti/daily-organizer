@@ -10,7 +10,7 @@ export const modifyCommentsRoute = (app) => {
       task: task,
       owner: owner,
     });
-    //console.log(`comments in db-${Object.keys(comments)}`);
+
     if (comments) {
       console.log("updating comments");
       await collection.updateOne({ id }, { $set: { content } });

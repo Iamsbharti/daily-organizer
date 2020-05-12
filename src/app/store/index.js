@@ -86,12 +86,21 @@ export const store = createStore(
         case mutations.SET_STATE:
           return action.state.comments;
         case mutations.SET_COMMENTS:
-          console.log(`reducer-${Object.keys(comments)}`);
           return comments.map((comment) => {
             return comment.id === action.id
               ? { ...comment, content: action.commentsValue }
               : comment;
           });
+        case mutations.ADD_COMMENTS:
+          return [
+            ...comments,
+            {
+              task: action.taskId,
+              content: action.content,
+              owner: action.userId,
+              id: action.comment_id,
+            },
+          ];
       }
       return comments;
     },

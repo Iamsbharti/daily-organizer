@@ -10,6 +10,7 @@ export const NOT_AUTHENTICATED = "NOT_AUTHENTICATED";
 export const AUTHENTICATING = "AUTHENTICATING";
 export const SET_STATE = "SET_STATE";
 export const SET_COMMENTS = "SET_COMMENTS";
+export const REQUEST_ADD_COMMENTS = "REQUEST_ADD_COMMENTS";
 export const ADD_COMMENTS = "ADD_COMMENTS";
 export const requestTaskCreate = (groupId) => {
   return {
@@ -72,7 +73,7 @@ export const setState = (state = {}) => {
   };
 };
 export const setComments = (taskId, comments, ownerId, id) => {
-  console.log(`setcomments actions-${taskId}-${comments}-${ownerId}`);
+  //console.log(`setcomments actions-${taskId}-${comments}-${ownerId}-${id}`);
   return {
     type: SET_COMMENTS,
     taskId,
@@ -81,12 +82,21 @@ export const setComments = (taskId, comments, ownerId, id) => {
     id,
   };
 };
-export const addComments = (taskId, content, userId) => {
-  console.log(`add comments action-${taskId}-${content}-${userId}`);
+export const requestAddComments = (taskId, content, userId) => {
+  //console.log(`add comments action-${taskId}-${content}-${userId}`);
+  return {
+    type: REQUEST_ADD_COMMENTS,
+    taskId,
+    content,
+    userId,
+  };
+};
+export const addComments = (taskId, content, userId, comment_id) => {
   return {
     type: ADD_COMMENTS,
     taskId,
     content,
     userId,
+    comment_id,
   };
 };
