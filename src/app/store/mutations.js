@@ -12,6 +12,7 @@ export const SET_STATE = "SET_STATE";
 export const SET_COMMENTS = "SET_COMMENTS";
 export const REQUEST_ADD_COMMENTS = "REQUEST_ADD_COMMENTS";
 export const ADD_COMMENTS = "ADD_COMMENTS";
+export const SIGN_UP = "SIGN_UP";
 export const requestTaskCreate = (groupId) => {
   return {
     type: REQUEST_TASK_CREATION,
@@ -98,5 +99,13 @@ export const addComments = (taskId, content, userId, comment_id) => {
     content,
     userId,
     comment_id,
+  };
+};
+export const signUp = (username, password) => {
+  console.log(`username-${username}-password-${password}`);
+  return {
+    type: SIGN_UP,
+    username,
+    password,
   };
 };

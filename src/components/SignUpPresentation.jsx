@@ -1,30 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-function SignUp() {
+function SignUp({ handleSignUp }) {
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  function signUp(e) {
+    e.preventDefault();
+    handleSignUp(username, password);
+  }
   return (
     <div className="card col-6 mt-4">
       <h1>
         <span className="badge badge-dark mt-2">Few Details Please!</span>
       </h1>
 
-      <form>
+      <form onSubmit={signUp}>
         <input
           type="text"
           name="username"
           placeholder="select a username"
           className="form-control"
+          value={username}
+          onChange={(e) => setUserName(e.target.value)}
         />
         <input
           type="password"
           name="password"
           placeholder="password"
+          value={password}
           className="form-control mt-2"
+          onChange={(e) => setPassword(e.target.value)}
         />
         <input
           type="password"
           name="confirmPwd"
           placeholder="confirm password"
+          value={confirmPassword}
           className="form-control mt-2"
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <div className="row">
           <button className="form-control mt-2 btn btn-success col ml-3">
