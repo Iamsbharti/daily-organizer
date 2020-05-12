@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as mutations from "../app/store/mutations";
+import { Link } from "react-router-dom";
 function Login({ authenticateUser, authenticated }) {
   return (
     <div className="card mt-5 pt-3 col-6">
@@ -20,7 +21,7 @@ function Login({ authenticateUser, authenticated }) {
           placeholder="password"
           name="password"
           defaultValue=""
-          className="form-control"
+          className="form-control mt-2"
         />
         {authenticated === mutations.NOT_AUTHENTICATED ? (
           <p>Login Failed!!</p>
@@ -28,12 +29,12 @@ function Login({ authenticateUser, authenticated }) {
           ""
         )}
         <div className="row">
-          <button className="form-control btn btn-primary mt-2 col p-2 ml-3">
+          <button className="form-control btn btn-primary mt-2 col ml-3">
             Login
           </button>
-          <button className="form-control btn btn-success mt-2 ml-3 col mr-3">
-            SignUp
-          </button>
+          <Link to="/signup" className="mt-2 ml-3 col">
+            <button className="form-control btn btn-success">SignUp</button>
+          </Link>
         </div>
       </form>
     </div>
