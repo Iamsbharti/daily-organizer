@@ -4,7 +4,9 @@ import * as mutations from "../app/store/mutations";
 function Login({ authenticateUser, authenticated }) {
   return (
     <div className="card mt-5 pt-3 col-6">
-      <h2>Login Here!!</h2>
+      <h1>
+        <span class="badge badge-dark">Login Here</span>
+      </h1>
       <form onSubmit={authenticateUser}>
         <input
           type="text"
@@ -25,7 +27,14 @@ function Login({ authenticateUser, authenticated }) {
         ) : (
           ""
         )}
-        <button className="form-control btn btn-primary mt-2">Login</button>
+        <div className="row">
+          <button className="form-control btn btn-primary mt-2 col p-2 ml-3">
+            Login
+          </button>
+          <button className="form-control btn btn-success mt-2 ml-3 col mr-3">
+            SignUp
+          </button>
+        </div>
       </form>
     </div>
   );
