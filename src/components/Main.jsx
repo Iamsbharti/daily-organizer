@@ -7,7 +7,8 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 import Navigation from "./Navigation";
 import TaskDetails from "./TaskDetails";
 import Login from "./Login";
-import SignUp from "./SignUp";
+import SignUpContainer from "./SignUpContainer";
+
 const RouterGaurd = (Component) => ({ match }) => {
   if (!store.getState().session.authenticated) {
     return <Redirect to="/" />;
@@ -25,7 +26,7 @@ function Main() {
             <Route exact path="/" render={() => <Login />} />
             <Route exact path="/dashboard" render={RouterGaurd(Dashboard)} />
             <Route exact path="/task/:id" render={RouterGaurd(TaskDetails)} />
-            <Route exact path="/signup" render={() => <SignUp />} />
+            <Route exact path="/signup" render={() => <SignUpContainer />} />
           </div>
         </Provider>
       </Router>
