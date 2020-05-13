@@ -3,6 +3,7 @@ import axios from "axios";
 import * as mutations from "./mutations";
 import { v4 as uuidv4 } from "uuid";
 import { history } from "./history";
+import md5 from "md5";
 
 const url = process.env.NODE_ENV == "production" ? "" : "http://localhost:8888";
 //create a new task
@@ -113,5 +114,20 @@ export function* inputValidation() {
     });
     console.log("data", data);
     yield put(mutations.inputValidationResponse(data));
+  }
+}
+export function* userSignUp() {
+  while (true) {
+    const { username, password } = yield take(mutations.SIGN_UP);
+    console.log(`signup-post-${username}-${password}`);
+    const { data } = yield axios.post(url + "/signUp", {
+      user: {
+        name: username,
+        passwordHash: md5(password),
+        id: uuidv4(),
+      },
+    });
+    console.log("signup response", data);
+    history.push("/");
   }
 }

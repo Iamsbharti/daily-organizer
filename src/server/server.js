@@ -7,6 +7,7 @@ import { autheticationRoute } from "./authenticate";
 import { modifyCommentsRoute } from "./modifyComments";
 import { addCommentsRoute } from "./addComments";
 import { validateUserNameRoute } from "./validateUserName";
+import { signUpRoute } from "./SignUp";
 import path from "path";
 
 //initailize a port
@@ -32,6 +33,9 @@ addCommentsRoute(app);
 
 //validate username
 validateUserNameRoute(app);
+
+//signupuser
+signUpRoute(app);
 
 //production config
 if (process.env.NODE_ENV == "production") {
