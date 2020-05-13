@@ -6,7 +6,7 @@ function Login({ authenticateUser, authenticated }) {
   return (
     <div className="card mt-5 pt-3 col-6">
       <h1>
-        <span class="badge badge-dark">Login Here</span>
+        <span className="badge badge-dark">Login Here</span>
       </h1>
       <form onSubmit={authenticateUser}>
         <input

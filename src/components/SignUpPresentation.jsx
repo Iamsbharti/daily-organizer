@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-function SignUp({ handleSignUp, userNameStatus }) {
+function SignUp({ inputValidation, userSignUp, userNameStatus }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [doesPasswordsMatch, setPasswordMatch] = useState(true);
+  const [userNameTaken, setNameTaken] = useState("");
+
   function signUp(e) {
     e.preventDefault();
-    handleSignUp(username, password);
+    userSignUp(username, password);
   }
   useEffect(() => {
+    console.log("trigger useeffect");
+    if (username !== "") {
+      inputValidation(username);
+    }
+    console.log("usernamestatus--", userNameStatus);
+    userNameStatus === "USER_NAME_TAKEN"
+      ? setNameTaken(true)
+      : setNameTaken(false);
     setPasswordMatch(password === confirmPassword);
-  }, [password, confirmPassword]);
+  }, [username, password, confirmPassword, userNameStatus]);
 
   return (
     <div className="card col-6 mt-4">
@@ -28,7 +38,7 @@ function SignUp({ handleSignUp, userNameStatus }) {
           value={username}
           onChange={(e) => setUserName(e.target.value)}
         />
-        {userNameStatus === "USER_NAME_TAKEN" ? (
+        {userNameTaken ? (
           <span className="badge badge-danger mt-2">username taken</span>
         ) : userNameStatus === undefined ? (
           ""
@@ -60,7 +70,7 @@ function SignUp({ handleSignUp, userNameStatus }) {
           <button className="form-control mt-2 btn btn-success col ml-3">
             SignUp
           </button>
-          <Link to="/login" className="mr-3 ml-5">
+          <Link to="/" className="mr-3 ml-5">
             <button className="form-control mt-2 btn btn-danger col">
               Cancel
             </button>

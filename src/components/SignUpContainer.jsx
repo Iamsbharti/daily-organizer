@@ -2,11 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import SignUpPresentation from "./SignUpPresentation";
 import * as mutations from "../app/store/mutations";
-function SignUpContainer({ handleInputValidation, userNameStatus }) {
+function SignUpContainer({
+  handleInputValidation,
+  handleSignUp,
+  userNameStatus,
+}) {
   return (
     <div>
       <SignUpPresentation
-        handleSignUp={handleInputValidation}
+        inputValidation={handleInputValidation}
+        userSignUp={handleSignUp}
         userNameStatus={userNameStatus}
       />
     </div>
