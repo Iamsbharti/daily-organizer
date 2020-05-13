@@ -2,20 +2,30 @@ import React from "react";
 import { connect } from "react-redux";
 import SignUpPresentation from "./SignUpPresentation";
 import * as mutations from "../app/store/mutations";
-function SignUpContainer({ handleInputValidation }) {
+function SignUpContainer({ handleInputValidation, userNameStatus }) {
   return (
     <div>
-      <SignUpPresentation handleSignUp={handleInputValidation} />
+      <SignUpPresentation
+        handleSignUp={handleInputValidation}
+        userNameStatus={userNameStatus}
+      />
     </div>
   );
 }
 function mapStateToProps(state, ownProps) {
-  return state;
+  const userNameStatus = state.users[0];
+  console.log("usernamestatus", userNameStatus);
+  return {
+    userNameStatus,
+  };
 }
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    handleInputValidation(username, password, confirmpassword) {
-      dispatch(mutations.verifyUserInput(username, password, confirmpassword));
+    handleInputValidation(username) {
+      dispatch(mutations.verifyUserInput(username));
+    },
+    handleSignUp(username, password) {
+      dispatch(mutations.userSignUp(username, password));
     },
   };
 }

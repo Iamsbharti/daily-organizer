@@ -14,7 +14,7 @@ export const REQUEST_ADD_COMMENTS = "REQUEST_ADD_COMMENTS";
 export const ADD_COMMENTS = "ADD_COMMENTS";
 export const SIGN_UP = "SIGN_UP";
 export const INPUT_VALIDATION = "INPUT_VALIDATION";
-export const USER_NAME_FOUND = "USER_NAME_FOUND";
+export const USER_NAME_STATUS = "USER_NAME_STATUS";
 export const requestTaskCreate = (groupId) => {
   return {
     type: REQUEST_TASK_CREATION,
@@ -103,10 +103,24 @@ export const addComments = (taskId, content, userId, comment_id) => {
     comment_id,
   };
 };
-export const verifyUserInput = (username, password) => {
-  console.log(`username-${username}-password-${password}`);
+export const verifyUserInput = (username) => {
+  console.log(`username-${username}`);
   return {
     type: INPUT_VALIDATION,
+    username,
+  };
+};
+export const inputValidationResponse = (userNameStatus) => {
+  console.log("response", userNameStatus);
+  return {
+    type: USER_NAME_STATUS,
+    userNameStatus,
+  };
+};
+export const userSignUp = (username, password) => {
+  console.log(`usersignup- ${username}-${password}`);
+  return {
+    type: SIGN_UP,
     username,
     password,
   };

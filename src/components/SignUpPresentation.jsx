@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-function SignUp({ handleSignUp }) {
+function SignUp({ handleSignUp, userNameStatus }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [doesPasswordsMatch, setPasswordMatch] = useState(true);
   function signUp(e) {
     e.preventDefault();
-    handleSignUp(username, password, confirmPassword);
+    handleSignUp(username, password);
   }
   useEffect(() => {
     setPasswordMatch(password === confirmPassword);
@@ -28,6 +28,13 @@ function SignUp({ handleSignUp }) {
           value={username}
           onChange={(e) => setUserName(e.target.value)}
         />
+        {userNameStatus === "USER_NAME_TAKEN" ? (
+          <span className="badge badge-danger mt-2">username taken</span>
+        ) : userNameStatus === undefined ? (
+          ""
+        ) : (
+          <span className="badge badge-success mt-2">username valid</span>
+        )}
         <input
           type="password"
           name="password"

@@ -105,6 +105,10 @@ export const store = createStore(
       return comments;
     },
     users(users = [], action) {
+      switch (action.type) {
+        case mutations.USER_NAME_STATUS:
+          return [...users, action.userNameStatus];
+      }
       return users;
     },
   }),

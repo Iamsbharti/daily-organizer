@@ -106,16 +106,12 @@ export function* addComments() {
 }
 export function* inputValidation() {
   while (true) {
-    const { username, password, confirmpassword } = yield take(
-      mutations.INPUT_VALIDATION
-    );
-    try {
-      const { data } = yield axios.post("/validateUser", {
-        username,
-      });
-      if (!data) {
-        throw new Error();
-      }
-    } catch (e) {}
+    const { username } = yield take(mutations.INPUT_VALIDATION);
+    console.log(`u=${username}`);
+    const { data } = yield axios.post(url + "/validateUser", {
+      username,
+    });
+    console.log("data", data);
+    yield put(mutations.inputValidationResponse(data));
   }
 }

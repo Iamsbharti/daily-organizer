@@ -6,6 +6,7 @@ import "./initialize-db";
 import { autheticationRoute } from "./authenticate";
 import { modifyCommentsRoute } from "./modifyComments";
 import { addCommentsRoute } from "./addComments";
+import { validateUserNameRoute } from "./validateUserName";
 import path from "path";
 
 //initailize a port
@@ -28,6 +29,10 @@ modifyCommentsRoute(app);
 
 //call addCommentsRoute
 addCommentsRoute(app);
+
+//validate username
+validateUserNameRoute(app);
+
 //production config
 if (process.env.NODE_ENV == "production") {
   app.use(express.static(path.resolve(__dirname, "../../dist")));
