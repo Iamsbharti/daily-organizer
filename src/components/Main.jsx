@@ -8,7 +8,7 @@ import Navigation from "./Navigation";
 import TaskDetails from "./TaskDetails";
 import Login from "./Login";
 import SignUpContainer from "./SignUpContainer";
-
+import Logout from "./Logout";
 const RouterGaurd = (Component) => ({ match }) => {
   if (!store.getState().session.authenticated) {
     return <Redirect to="/" />;
@@ -27,6 +27,7 @@ function Main() {
             <Route exact path="/dashboard" render={RouterGaurd(Dashboard)} />
             <Route exact path="/task/:id" render={RouterGaurd(TaskDetails)} />
             <Route exact path="/signup" render={() => <SignUpContainer />} />
+            <Route exact path="/logout" render={() => <Logout />} />
           </div>
         </Provider>
       </Router>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import images from "../../public/images/org.png";
+import { Link } from "react-router-dom";
 function Navigation({ username }) {
   return (
     <div>
@@ -26,7 +27,9 @@ function Navigation({ username }) {
             <>
               <li className="nav-item mt-2">{`${username} logged in`}</li>
               <li className="nav-item ml-2">
-                <button className="btn btn-link">Logout</button>
+                <Link to="/logout">
+                  <button className="btn btn-link">Logout</button>
+                </Link>
               </li>
             </>
           )}

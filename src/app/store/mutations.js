@@ -15,6 +15,7 @@ export const ADD_COMMENTS = "ADD_COMMENTS";
 export const SIGN_UP = "SIGN_UP";
 export const INPUT_VALIDATION = "INPUT_VALIDATION";
 export const USER_NAME_STATUS = "USER_NAME_STATUS";
+export const USER_LOGOUT = "USER_LOGOUT";
 export const requestTaskCreate = (groupId, userId) => {
   return {
     type: REQUEST_TASK_CREATION,
@@ -124,5 +125,12 @@ export const userSignUp = (username, password) => {
     type: SIGN_UP,
     username,
     password,
+  };
+};
+export const userLogout = (username) => {
+  console.log("userlogout", username);
+  return {
+    type: USER_LOGOUT,
+    username,
   };
 };
