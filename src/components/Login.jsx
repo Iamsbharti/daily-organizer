@@ -13,7 +13,7 @@ function Login({ authenticateUser, authenticated }) {
           type="text"
           placeholder="username"
           name="username"
-          defaultValue="Dev"
+          defaultValue=""
           className="form-control"
         />
         <input

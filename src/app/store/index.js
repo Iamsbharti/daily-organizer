@@ -47,7 +47,7 @@ export const store = createStore(
         case mutations.SET_STATE:
           return action.state.tasks;
         case mutations.CREATE_TASK:
-          console.log("in store--create-task--store/reducers");
+          //console.log("in store--create-task--store/reducers");
           return [
             ...tasks,
             {

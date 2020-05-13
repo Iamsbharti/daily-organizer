@@ -19,7 +19,7 @@ function SignUpContainer({
 }
 function mapStateToProps(state, ownProps) {
   const userNameStatus = state.users[0];
-  console.log("usernamestatus", userNameStatus);
+  //console.log("usernamestatus", userNameStatus);
   return {
     userNameStatus,
   };

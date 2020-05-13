@@ -106,21 +106,21 @@ export const addComments = (taskId, content, userId, comment_id) => {
   };
 };
 export const verifyUserInput = (username) => {
-  console.log(`username-${username}`);
+  //console.log(`username-${username}`);
   return {
     type: INPUT_VALIDATION,
     username,
   };
 };
 export const inputValidationResponse = (userNameStatus) => {
-  console.log("response", userNameStatus);
+  //console.log("response", userNameStatus);
   return {
     type: USER_NAME_STATUS,
     userNameStatus,
   };
 };
 export const userSignUp = (username, password) => {
-  console.log(`usersignup- ${username}-${password}`);
+  //console.log(`usersignup- ${username}-${password}`);
   return {
     type: SIGN_UP,
     username,
@@ -128,7 +128,7 @@ export const userSignUp = (username, password) => {
   };
 };
 export const userLogout = (username) => {
-  console.log("userlogout", username);
+  //console.log("userlogout", username);
   return {
     type: USER_LOGOUT,
     username,

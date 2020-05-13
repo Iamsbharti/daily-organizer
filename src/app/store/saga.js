@@ -61,7 +61,7 @@ export function* userAuthentication() {
         username,
         password,
       });
-      console.log("data", data);
+      //console.log("data", data);
       yield put(mutations.setState(data.state));
       yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED));
       history.push("/dashboard");
@@ -86,7 +86,7 @@ export function* modifyComments() {
       owner: commentValues.ownerId,
       id: commentValues.id,
     });
-    console.log("Response from server-modify-comments", data);
+    //console.log("Response from server-modify-comments", data);
   }
 }
 export function* addComments() {
@@ -94,7 +94,7 @@ export function* addComments() {
     const commentsValue = yield take(mutations.REQUEST_ADD_COMMENTS);
     const { taskId, content, userId } = commentsValue;
     let comment_id = uuidv4();
-    console.log("saga--", commentsValue.content);
+    //console.log("saga--", commentsValue.content);
     //update store
     yield put(mutations.addComments(taskId, content, userId, comment_id));
     const { data } = yield axios.post(url + "/addComments", {
@@ -109,18 +109,18 @@ export function* addComments() {
 export function* inputValidation() {
   while (true) {
     const { username } = yield take(mutations.INPUT_VALIDATION);
-    console.log(`u=${username}`);
+    //console.log(`u=${username}`);
     const { data } = yield axios.post(url + "/validateUser", {
       username,
     });
-    console.log("data", data);
+    //console.log("data", data);
     yield put(mutations.inputValidationResponse(data));
   }
 }
 export function* userSignUp() {
   while (true) {
     const { username, password } = yield take(mutations.SIGN_UP);
-    console.log(`signup-post-${username}-${password}`);
+    //console.log(`signup-post-${username}-${password}`);
     let user_id = uuidv4();
     let input_group = defaultState.groups.map((group) => ({
       ...group,
@@ -135,7 +135,7 @@ export function* userSignUp() {
       },
       input_group,
     });
-    console.log("signup response", data);
+    //console.log("signup response", data);
     history.push("/");
   }
 }

@@ -6,7 +6,7 @@ export function addCommentsRoute(app) {
     let collection = await db.collection("comments");
 
     const comment = req.body;
-    console.log("adding comments");
+    //console.log("adding comments");
     await collection.insertOne(comment);
 
     res.status(200).send("Comment add Sucessfully");

@@ -7,8 +7,8 @@ export function signUpRoute(app) {
 
     let user = req.body.user;
     let groups = req.body.input_group;
-    console.log("user-", user);
-    console.log("groups-", groups);
+    //console.log("user-", user);
+    //console.log("groups-", groups);
 
     await users_collection.insertOne(user);
     for (let group in groups) {

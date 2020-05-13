@@ -12,11 +12,11 @@ function SignUp({ inputValidation, userSignUp, userNameStatus }) {
     userSignUp(username, password);
   }
   useEffect(() => {
-    console.log("trigger useeffect");
+    //console.log("trigger useeffect");
     if (username !== "") {
       inputValidation(username);
     }
-    console.log("usernamestatus--", userNameStatus);
+    //console.log("usernamestatus--", userNameStatus);
     userNameStatus === "USER_NAME_TAKEN"
       ? setNameTaken(true)
       : setNameTaken(false);

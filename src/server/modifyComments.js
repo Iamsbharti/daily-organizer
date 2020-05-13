@@ -4,7 +4,7 @@ export const modifyCommentsRoute = (app) => {
     let db = await connectDb();
     let collection = db.collection("comments");
     let { task, content, owner, id } = req.body;
-    console.log(`reque body -${task}-${content}-${owner}-${id}`);
+    //console.log(`reque body -${task}-${content}-${owner}-${id}`);
     //search the collection for existing comments realted to task and user
     let comments = await collection.findOne({
       task: task,
@@ -12,7 +12,7 @@ export const modifyCommentsRoute = (app) => {
     });
 
     if (comments) {
-      console.log("updating comments");
+      //console.log("updating comments");
       await collection.updateOne({ id }, { $set: { content } });
     }
     res.status(200).send("comments updated");

@@ -33,7 +33,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     createNewTask(id, userId) {
-      console.log(`new task ${id} for user${userId}`);
+      //console.log(`new task ${id} for user${userId}`);
       dispatch(requestTaskCreate(id, userId));
     },
   };
