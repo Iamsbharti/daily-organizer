@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import TaskList from "./TaskList";
-function Dashboard({ groups }) {
+function Dashboard({ groups, userId }) {
   return (
     <div className="row">
       {groups.map((group) => (
@@ -9,6 +9,7 @@ function Dashboard({ groups }) {
           key={group.id}
           name={group.name}
           id={group.id}
+          userId={userId}
           className="col"
         />
       ))}

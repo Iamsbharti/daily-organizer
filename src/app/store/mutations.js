@@ -15,10 +15,11 @@ export const ADD_COMMENTS = "ADD_COMMENTS";
 export const SIGN_UP = "SIGN_UP";
 export const INPUT_VALIDATION = "INPUT_VALIDATION";
 export const USER_NAME_STATUS = "USER_NAME_STATUS";
-export const requestTaskCreate = (groupId) => {
+export const requestTaskCreate = (groupId, userId) => {
   return {
     type: REQUEST_TASK_CREATION,
     groupId,
+    userId,
   };
 };
 

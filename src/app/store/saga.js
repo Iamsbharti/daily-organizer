@@ -10,9 +10,9 @@ const url = process.env.NODE_ENV == "production" ? "" : "http://localhost:8888";
 //create a new task
 export function* requestTaskCreate() {
   while (true) {
-    const { groupId } = yield take(mutations.REQUEST_TASK_CREATION);
+    const { groupId, userId } = yield take(mutations.REQUEST_TASK_CREATION);
     const taskId = uuidv4();
-    const ownerId = "U1";
+    const ownerId = userId;
     yield put(mutations.createTask(taskId, groupId, ownerId));
     const { res } = yield axios.post(url + "/task/newTask", {
       task: {
