@@ -9,7 +9,7 @@ import TaskDetails from "./TaskDetails";
 import Login from "./Login";
 import SignUpContainer from "./SignUpContainer";
 import Logout from "./Logout";
-import { ToastContainer } from "react-toastify";
+import "../../src/index.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const RouterGaurd = (Component) => ({ match }) => {
