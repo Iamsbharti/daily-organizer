@@ -30,6 +30,10 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg|ico)$/i,
         loader: "url-loader?name=public/images/[name].[ext]",
       },
+      {
+        test: /(\.css)$/,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
 };

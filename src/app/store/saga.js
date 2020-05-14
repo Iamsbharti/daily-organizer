@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { history } from "./history";
 import md5 from "md5";
 import { defaultState } from "../../server/defaultState";
-
+import { toast } from "react-toastify";
 const url = process.env.NODE_ENV == "production" ? "" : "http://localhost:8888";
 //create a new task
 export function* requestTaskCreate() {
@@ -23,7 +23,7 @@ export function* requestTaskCreate() {
         isComplete: false,
       },
     });
-
+    toast.success("Task Created");
     console.log("Create Task Response", res);
   }
 }
@@ -46,6 +46,7 @@ export function* modifyTask() {
         isComplete: task.isComplete,
       },
     });
+
     console.log("Response from update:", res);
   }
 }
@@ -65,6 +66,7 @@ export function* userAuthentication() {
       //console.log("data", data);
       yield put(mutations.setState(data.state));
       yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED));
+      toast.success("Login success");
       history.push("/dashboard");
       if (!data) {
         throw new Error();
@@ -72,6 +74,7 @@ export function* userAuthentication() {
       console.log("Authenticated", data);
     } catch (e) {
       console.log("Can't Authenticate", e);
+      toast.error("Login Failed");
       yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED));
     }
   }
@@ -87,7 +90,8 @@ export function* modifyComments() {
       owner: commentValues.ownerId,
       id: commentValues.id,
     });
-    //console.log("Response from server-modify-comments", data);
+
+    console.log("Response from server-modify-comments", data);
   }
 }
 export function* addComments() {
@@ -104,6 +108,7 @@ export function* addComments() {
       task: commentsValue.taskId,
       content: commentsValue.content,
     });
+
     console.log("Response from server add-comments", data);
   }
 }
@@ -137,6 +142,7 @@ export function* userSignUp() {
       input_group,
     });
     //console.log("signup response", data);
+    toast.success("SignUp Sucess");
     history.push("/");
   }
 }

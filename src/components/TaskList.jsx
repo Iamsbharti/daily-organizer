@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function TaskList({ tasks, groupName, id, createNewTask, userId }) {
   return (
-    <div className="card p-2 m-2">
+    <div className="card p-2 m-2 ml-3">
       <h4>{groupName}</h4>
       {tasks.map((task) => (
         <Link to={`/task/${task.id}`} key={task.id}>

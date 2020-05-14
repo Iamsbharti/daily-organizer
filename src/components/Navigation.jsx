@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import images from "../../public/images/org.png";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 function Navigation({ username }) {
   return (
     <div>
@@ -35,6 +36,7 @@ function Navigation({ username }) {
           )}
         </ul>
       </nav>
+      <ToastContainer autoClose={3000} hideProgressBar />
     </div>
   );
 }

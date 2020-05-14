@@ -16,6 +16,7 @@ export const SIGN_UP = "SIGN_UP";
 export const INPUT_VALIDATION = "INPUT_VALIDATION";
 export const USER_NAME_STATUS = "USER_NAME_STATUS";
 export const USER_LOGOUT = "USER_LOGOUT";
+import { toast } from "react-toastify";
 export const requestTaskCreate = (groupId, userId) => {
   return {
     type: REQUEST_TASK_CREATION,
@@ -34,6 +35,7 @@ export const createTask = (taskId, groupId, ownerId) => {
 };
 
 export const setTaskCompletion = (taskId, isComplete) => {
+  toast.success("Task Status Updated");
   return {
     type: SET_TASK_COMPLETION,
     taskId,
@@ -48,6 +50,7 @@ export const setTaskName = (taskId, taskName) => {
   };
 };
 export const setGroupName = (taskId, groupId) => {
+  toast.success("Group Changed");
   return {
     type: SET_GROUP_NAME,
     taskId,
@@ -129,6 +132,7 @@ export const userSignUp = (username, password) => {
 };
 export const userLogout = (username) => {
   //console.log("userlogout", username);
+  toast.error("Logout Success");
   return {
     type: USER_LOGOUT,
     username,

@@ -10,6 +10,8 @@ import Login from "./Login";
 import SignUpContainer from "./SignUpContainer";
 import Logout from "./Logout";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const RouterGaurd = (Component) => ({ match }) => {
   if (!store.getState().session.authenticated) {
     return <Redirect to="/" />;
@@ -19,7 +21,7 @@ const RouterGaurd = (Component) => ({ match }) => {
 };
 function Main() {
   return (
-    <div>
+    <div className="container-fluid">
       <Router history={history}>
         <Provider store={store}>
           <div>
@@ -31,7 +33,6 @@ function Main() {
               <Route exact path="/signup" render={() => <SignUpContainer />} />
               <Route exact path="/logout" render={() => <Logout />} />
             </Switch>
-            <ToastContainer autoClose={3000} hideProgressBar />
           </div>
         </Provider>
       </Router>
