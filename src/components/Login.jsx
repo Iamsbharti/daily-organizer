@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as mutations from "../app/store/mutations";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 function Login({ authenticateUser, authenticated }) {
   return (
     <div className="card mt-5 pt-3 col-6">

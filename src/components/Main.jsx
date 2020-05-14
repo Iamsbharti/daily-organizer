@@ -9,6 +9,7 @@ import TaskDetails from "./TaskDetails";
 import Login from "./Login";
 import SignUpContainer from "./SignUpContainer";
 import Logout from "./Logout";
+import { ToastContainer } from "react-toastify";
 const RouterGaurd = (Component) => ({ match }) => {
   if (!store.getState().session.authenticated) {
     return <Redirect to="/" />;
@@ -23,11 +24,14 @@ function Main() {
         <Provider store={store}>
           <div>
             <Navigation />
-            <Route exact path="/" render={() => <Login />} />
-            <Route exact path="/dashboard" render={RouterGaurd(Dashboard)} />
-            <Route exact path="/task/:id" render={RouterGaurd(TaskDetails)} />
-            <Route exact path="/signup" render={() => <SignUpContainer />} />
-            <Route exact path="/logout" render={() => <Logout />} />
+            <Switch>
+              <Route exact path="/" render={() => <Login />} />
+              <Route exact path="/dashboard" render={RouterGaurd(Dashboard)} />
+              <Route exact path="/task/:id" render={RouterGaurd(TaskDetails)} />
+              <Route exact path="/signup" render={() => <SignUpContainer />} />
+              <Route exact path="/logout" render={() => <Logout />} />
+            </Switch>
+            <ToastContainer autoClose={3000} hideProgressBar />
           </div>
         </Provider>
       </Router>
